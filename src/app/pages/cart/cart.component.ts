@@ -4,6 +4,7 @@ import { CartService } from '../../core/services/cart/cart.service';
 import { Icart } from '../../shared/interfaces/icart';
 import { CurrencyPipe} from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 interface clearResponse{
   
     message: string;
@@ -12,11 +13,12 @@ interface clearResponse{
 
 @Component({
   selector: 'app-cart',
-  imports: [CurrencyPipe,RouterLink],
+  imports: [RouterLink,RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit{
+  currencyPipe = inject(CurrencyPipe);
   private readonly cartService = inject(CartService);
   allcartdata!:Icart
 
