@@ -67,4 +67,8 @@ const rePassword= group.get('rePassword')?.value; //to get the value of the repa
  return password===rePassword?null:{mismatch:true}; //bkarn el etnen lw msh zy b3d hyrg3ly mismatch
 }
 
+
+get nameControl() {
+  return this.registerForm.get('name');
+}
 }
