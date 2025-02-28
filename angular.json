@@ -37,6 +37,8 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/ball-pulse.css",
                 "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                "node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel.scss",
+                "node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss",
               "src/styles.scss"
             ],
             "scripts": [
