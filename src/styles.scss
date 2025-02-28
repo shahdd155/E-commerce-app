@@ -1,11 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel' as carousel;
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default' as theme;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 
 :root {
   --main-color: #0aad0a;
@@ -89,11 +87,9 @@ a:hover {
   background-color: #11bd11;
 }
 
-
 .main-sec{
 @apply bg-gray-50 rounded border shadow p-4;
 }
-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
