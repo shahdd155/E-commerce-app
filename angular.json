@@ -20,6 +20,7 @@
             "outputPath": "dist/ecommerce",
             "index": "src/index.html",
             "browser": "src/main.ts",
+             "renderMode": "client-only",
             "polyfills": [
               "zone.js"
             ],
@@ -90,20 +91,6 @@
             }
           },
           "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "routes": [
-              "home",
-              "cart",
-              "products",
-              "brands",
-              "categories",
-              "wishlist",
-              "allorders"
-            ]
-          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
