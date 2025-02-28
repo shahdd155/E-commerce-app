@@ -18,7 +18,6 @@ interface clearResponse{
   styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit{
-  currencyPipe = inject(CurrencyPipe);
   private readonly cartService = inject(CartService);
   allcartdata!:Icart
 
@@ -79,3 +78,5 @@ this.allcartdata.data=[] as any
   
 
 }
+
+
