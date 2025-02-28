@@ -53,7 +53,7 @@ this.allcartdata.data=[] as any
       return cartProd;
     });
   
-    this.cartService.UpdateProductCart(id, count).subscribe({
+    this.cartService. UpdateProductCart(id, count).subscribe({
       next: (res) => {
         this.allcartdata = res;
       },
