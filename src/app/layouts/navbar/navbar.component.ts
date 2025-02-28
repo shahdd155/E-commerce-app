@@ -14,8 +14,8 @@ import { MyTranslateService } from '../../core/services/myTranslate/my-translate
 })
 export class NavbarComponent implements OnInit{
  private readonly authService = inject(AuthService)
- private readonly myTranslateService = inject(MyTranslateService)
- private readonly translateService= inject(TranslateService)
+//  private readonly myTranslateService = inject(MyTranslateService)
+//  private readonly translateService= inject(TranslateService)
 cartService = inject(CartService)
 isLogin= input<boolean>(true);
 
@@ -34,12 +34,12 @@ logOut():void{
   this.authService.logoutUser();
 }
 
-change(lang: string): void {
-  this.myTranslateService.changeLangTranslate(lang);
-}
+// change(lang: string): void {
+//   this.myTranslateService.changeLangTranslate(lang);
+// }
 
-currentlang(lang:string):boolean{
-return this.translateService.currentLang=== lang
-}
+// currentlang(lang:string):boolean{
+// return this.translateService.currentLang=== lang
+// }
 
 }

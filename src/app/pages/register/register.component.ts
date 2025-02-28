@@ -68,7 +68,5 @@ const rePassword= group.get('rePassword')?.value; //to get the value of the repa
 }
 
 
-get nameControl() {
-  return this.registerForm.get('name');
-}
+
 }
