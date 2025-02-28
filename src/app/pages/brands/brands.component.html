@@ -1,0 +1,15 @@
+<section class="text-center p-5">
+    <h1 class="text-2xl font-bold mb-5">Shop All Brands</h1>
+    <div class="flex flex-wrap justify-center gap-4">
+      @for (brand of brands; track $index) {
+        <div class="border border-gray-300 p-4 shadow-lg w-52 text-center transition-transform transform hover:scale-105">
+          <img [src]="brand.image" [alt]="brand.name" class="w-full h-auto rounded-md"/>
+          <h3 class="mt-2 font-semibold">{{ brand.name }}</h3>
+          <button (click)="showBrandDetails(brand)" class=" btn-main">Shop Brand</button>
+        </div>
+
+
+        
+      }
+    </div>
+  </section>

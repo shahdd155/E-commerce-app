@@ -1,0 +1,95 @@
+<!-- step 2 in the -->
+ <!-- w step 3 en arbot el js bel html form bel formcontrolname w formGroup -->
+
+ <section class=" w-2/3 mx-auto bg-gray-50 p-4 my-20 rounded-lg border shadow-md">
+    <h1 class=" capitalize text-3xl text-center">{{'login.loginNow' | translate}} </h1>
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+  
+       
+    <div class="mb-2">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'login.email' | translate}}  </label>
+        <input type="email" id="email" formControlName="email" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    
+        @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched){
+            <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                 
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @if(loginForm.get('email')?.getError('required')){
+                            <li>this field is required</li>
+                        }
+                        @else if (loginForm.get('email')?.getError('email')) {
+                            <li>enter valid email</li>
+                        }
+                   
+                  </ul>
+                </div>
+              </div>
+        }
+    
+    </div>
+
+    <div class="mb-2">
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'login.password' | translate}}  </label>
+        <input type="password" id="password" formControlName="password" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched){
+            <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @if(loginForm.get('password')?.getError('required')){
+                            <li>this field is required</li> 
+                        }
+                      
+                     @else if(loginForm.get('password')?.getError('pattern')) {
+                        <li>enter correct password</li> 
+                     }
+                   
+                  </ul>
+                </div>
+              </div>
+        }
+    
+    </div>
+
+<div>
+  <a routerLink="/forgot" class=" text-blue-400 underline  hover:underline hover:text-blue-400 cursor-pointer me-3"> forget Password</a>
+  <button [disabled]="loginForm.invalid || isLoading" type="submit" class="btn-main">{{'login.logIn' | translate}} 
+     @if (isLoading) {
+      <span><i class="fas fa-spin fa-spinner"></i></span>
+     }
+  </button>
+</div>
+
+
+@if (errorMessage) {
+    <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+        <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        </svg>
+        <div>
+          <span class="font-medium">{{errorMessage}}</span>
+        </div>
+      </div>
+}
+
+@if (isSuccess) {
+    <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+        <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        </svg>
+      
+        <div>
+          <span class="font-medium">{{isSuccess}}</span>
+        </div>
+      </div>
+}
+</form>
+</section>

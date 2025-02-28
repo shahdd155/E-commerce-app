@@ -1,0 +1,62 @@
+<section class="main-sec w-[90%] md:w-[75%] mx-auto p-6 bg-gray-50 shadow-lg rounded-lg">
+    <h1 class="text-center text-3xl font-semibold text-green-700 mb-4">Shopping Cart</h1>
+    <span class="block text-lg font-medium text-green-700 mb-6">
+        Total Cart Price: {{allcartdata.data.totalCartPrice}} EGP
+    </span>
+    <div class="mb-4 me-auto">
+        <button (click)="clearCart()" class="px-4 py-2  bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300 flex items-center gap-2">
+            Clear Cart <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        
+    </div>
+
+    @for (cartProd of allcartdata.data.products; track cartProd.product.id) {
+        <div class="grid md:grid-cols-[12%_minmax(0,1fr)] gap-4 p-4 border rounded-lg bg-white  mb-4">
+            <!-- Product Image -->
+            <div class="flex justify-center items-center">
+                <img [src]="cartProd.product.imageCover" alt="{{cartProd.product.title}}" [routerLink]="['/details', cartProd.product.id]" class="w-24 h-24 object-cover rounded-md border">
+            </div>
+
+            <!-- Product Details & Actions -->
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h3 [routerLink]="['/details', cartProd.product.id]" target="_blank" class=" cursor-pointer text-xl font-semibold text-gray-800">{{cartProd.product.title}}</h3>
+                    <h4 class="text-green-600 font-medium mt-1">Price: {{cartProd.price}} EGP</h4>
+                </div>
+
+                <div class="flex justify-between items-center mt-3">
+                    <!-- Quantity Controls -->
+                    <div class="flex items-center space-x-3">
+                        <button class="text-green-600 text-2xl" (click)=" updateCart(cartProd.product.id,cartProd.count -1)">
+                            <i class="fa-regular fa-square-minus"></i>
+                        </button>
+                        <span class="text-lg font-medium">{{cartProd.count}}</span>
+                        <button class="text-green-600 text-2xl" (click)="updateCart(cartProd.product.id,cartProd.count +1)">
+                            <i class="fa-regular fa-square-plus"></i>
+                        </button>
+                    </div>
+
+                    <!-- Remove Button -->
+                    <button class="flex items-center gap-2 text-red-500 hover:text-red-600 transition" (click)="removeFromCart(cartProd.product.id)">
+                        <i class="fas fa-trash-can"></i> Remove
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    }
+    @empty {
+        <div class="flex flex-col items-center justify-center text-center py-10">
+            <i class="fas fa-shopping-cart text-6xl text-gray-400 mb-4"></i>
+            <h2 class="text-2xl font-semibold text-gray-600">Your Cart is Empty</h2>
+            <p class="text-gray-500 mt-2">Browse our products and add items to your cart.</p>
+            <a routerLink="/home" class="mt-4 px-6 py-2 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition duration-300">
+                Start Shopping
+            </a>
+        </div>
+    }
+
+<button class="btn-main" [routerLink]="['/checkout',allcartdata.cartId]">CheckOut <i class="fa-solid fa-arrow-right"></i></button>
+
+
+</section>

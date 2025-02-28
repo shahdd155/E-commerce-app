@@ -1,0 +1,53 @@
+<section class="main-sec w-[90%] md:w-[75%] mx-auto p-6 bg-gray-50 shadow-lg rounded-lg">
+    <h1 class="text-center text-3xl font-semibold text-green-700 mb-4">My Wishlist</h1>
+
+    <div class="mb-4 me-auto">
+   
+    </div>
+
+    <!-- Wishlist Items -->
+    @for (item of allWishlistData?.data; track item?.id) {
+
+        <div class="grid md:grid-cols-[12%_minmax(0,1fr)] gap-4 p-4 border rounded-lg bg-white mb-4">
+            
+            <!-- Product Image -->
+            <div class="flex justify-center items-center">
+                <img [src]="item.imageCover" alt="{{ item.title}}" [routerLink]="['/details', item.id]" 
+                    class="w-24 h-24 object-cover rounded-md border">
+            </div>
+
+            <!-- Product Details & Actions -->
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h3 [routerLink]="['/details', item.id]" target="_blank"
+                        class="cursor-pointer text-xl font-semibold text-gray-800">
+                        {{ item.title}}
+                    </h3>
+                    <h4 class="text-green-600 font-medium mt-1">Price: {{ item.price}} EGP</h4>
+                </div>
+
+                <div class="flex justify-between items-center mt-3">
+    
+                    <!-- Remove from Wishlist -->
+                    <button (click)="removeFromWishlist(item.id)" class="text-red-500 hover:text-red-600 transition">
+                        <i class="fas fa-trash-can"></i> Remove
+                      </button>
+                      
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Empty Wishlist Message -->
+    @empty {
+        <div class="flex flex-col items-center justify-center text-center py-10">
+            <i class="fa-solid fa-heart text-6xl text-gray-400 mb-4"></i>
+            <h2 class="text-2xl font-semibold text-gray-600">Your Wishlist is Empty</h2>
+            <p class="text-gray-500 mt-2">Save your favorite products and find them here later.</p>
+            <a routerLink="/home" 
+                class="mt-4 px-6 py-2 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition duration-300">
+                Start Shopping
+            </a>
+        </div>
+    }
+</section>

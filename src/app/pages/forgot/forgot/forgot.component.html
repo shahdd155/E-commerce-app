@@ -1,0 +1,51 @@
+<section class="container mx-auto border border-2 rounded shadow-md">
+    <h1  class="text-2xl font-bold mb-5 text-center">forget password</h1>
+
+
+@if (step==1) {
+    <form [formGroup]="verifyEmail" class=" w-3/4 mx-auto" (ngSubmit)="verifyEmailSubmit()">
+
+
+        <div class="my-2">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> enter valid email: </label>
+            <input formControlName="email" type="email" id="email"  class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        
+        </div>
+    <button [disabled]="verifyEmail.invalid" class="btn-main mb-4">verify Email</button>
+    </form>
+}@else if (step==2) {
+    <form [formGroup]="verifyCode" class=" w-3/4 mx-auto" (ngSubmit)="verifyCodeSubmit()">
+
+
+        <div class="my-2">
+            <label for="resetCode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> enter the reset Code sent to you </label>
+            <input formControlName="resetCode" type="text" id="resetCode" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        
+        </div>
+    <button [disabled]="verifyCode.invalid" class="btn-main">verify resetCode</button>
+    </form>
+}
+
+
+@if (step==3) {
+    <form [formGroup]="resetPassword" class=" w-3/4 mx-auto" (ngSubmit)="verifyPasswordSubmit()">
+
+
+        <div class="my-2">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> enter valid email</label>
+            <input readonly formControlName="email" type="email" id="email"  class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        
+        </div>
+    
+        <div class="my-2">
+            <label for=" newPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> enter valid  newPassword</label>
+            <input formControlName=" newPassword" type="password" id=" newPassword"  class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        
+        </div>
+    <button [disabled]="resetPassword.invalid" class="btn-main">resetPassword</button>
+    </form>
+}
+
+
+
+</section>
