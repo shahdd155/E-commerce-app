@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 
 :root {
   --main-color: #0aad0a;
