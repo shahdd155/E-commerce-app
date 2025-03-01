@@ -4,6 +4,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { authGuard } from './core/guards/auth/auth.guard';
+import { loggedGuard } from './core/guards/logged/logged.guard';
 
 
 export const routes: Routes = [
@@ -12,6 +13,7 @@ export const routes: Routes = [
     {
         path: '',
         component: AuthLayoutComponent,
+       canActivate:[loggedGuard],
         children: [
             {
                 path: 'login',
@@ -34,7 +36,7 @@ export const routes: Routes = [
     {
         path: '',
         component: BlankLayoutComponent,
-      
+        canActivate:[authGuard],
         children: [
             {
                 path: 'home',
