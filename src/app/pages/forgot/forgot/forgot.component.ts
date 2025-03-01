@@ -12,58 +12,54 @@ import { Router } from '@angular/router';
 })
 export class ForgotComponent {
 
-  private readonly router= inject(Router)
-step:number=1;
+  private readonly router = inject(Router);
+  step: number = 1;
 
- verifyEmail: FormGroup= new FormGroup({
-  email: new FormControl(null,[Validators.required,Validators.email])
- })
- verifyCode: FormGroup= new FormGroup({
-  resetCode: new FormControl(null,[Validators.required,Validators.pattern(/^ [0-9]{6}$/)])
- })
+  verifyEmail: FormGroup = new FormGroup({
+    email: new FormControl(null, [Validators.required, Validators.email])
+  });
 
+  verifyCode: FormGroup = new FormGroup({
+    resetCode: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]{5,}$/)])
+  });
 
- resetPassword: FormGroup= new FormGroup({
-  email: new FormControl(null,[Validators.required,Validators.email]),
-  newPassword: new FormControl(null,[Validators.required,Validators.pattern(/^[A-Z]\w{7}$/) ])
- })
+  resetPassword: FormGroup = new FormGroup({
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    newPassword: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z]\w{7}$/)])
+  });
 
+  private readonly authService = inject(AuthService);
 
-   private readonly authService=inject(AuthService)
-
-   verifyEmailSubmit():void{
-   let emailValue= this.verifyEmail.get('email')?.value
-   this.resetPassword.get('email')?.patchValue(emailValue)
+  verifyEmailSubmit(): void {
+    let emailValue = this.verifyEmail.get('email')?.value;
+    this.resetPassword.get('email')?.patchValue(emailValue);
     this.authService.setEmailVerify(this.verifyEmail.value).subscribe({
-      next:(res)=>{
-if(res.statusMsg==="success"){
-this.step=2;
-}
+      next: (res) => {
+        if (res.statusMsg === "success") {
+          this.step = 2;
+        }
       }
-    })
-   }
+    });
+  }
 
-
-   verifyCodeSubmit():void{
+  verifyCodeSubmit(): void {
     this.authService.setCodeVerify(this.verifyCode.value).subscribe({
-      next:(res)=>{
-if(res.status==="success"){
-this.step=3;
-}
+      next: (res) => {
+        if (res.status === "Success") {
+          this.step = 3;
+        }
       }
-    })
-   }
+    });
+  }
 
-
-   verifyPasswordSubmit():void{
+  verifyPasswordSubmit(): void {
     this.authService.resetPassword(this.resetPassword.value).subscribe({
-      next:(res)=>{
-if(res.status==="success"){
-localStorage.setItem('userToken',res.token)
-this.authService.getUserData()
-this.router.navigate(['/home'])
-}
+      next: (res) => {
+          localStorage.setItem('token', res.token);
+          this.authService.getUserData();
+          this.router.navigate(['/home']);
+        
       }
-    })
-   }
+    });
+  }
 }

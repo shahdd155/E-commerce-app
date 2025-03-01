@@ -1,24 +1,22 @@
- <section class="main-sec w-[90%] md:w-[75%] mx-auto p-6 bg-gray-50 shadow-lg rounded-lg">
+<section class="main-sec w-[90%] md:w-[75%] mx-auto p-6 bg-gray-50 shadow-lg rounded-lg">
     <h1 class="text-center text-3xl font-semibold text-green-700 mb-4">CheckOut</h1>
     <form [formGroup]="checkOutForm" (ngSubmit)="submitPaymentForm()">
-<div class="relative mb-4">
-    <label for="details" class="leading-7 text-sm text-gray-600">Full address Details: </label>
-    <textarea  formControlName="details" id="details" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
-    </div>
-
-    <div class="relative mb-4">
-        <label for="phone" class="leading-7 text-sm text-gray-600">phone: </label>
-        <input  formControlName="phone" id="phone" type="tel" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        <div class="relative mb-4">
+            <label for="details" class="leading-7 text-sm text-gray-600">Full address Details: </label>
+            <textarea formControlName="details" id="details" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
         </div>
 
         <div class="relative mb-4">
-            <label for="city" class="leading-7 text-sm text-gray-600">city: </label>
-            <input  formControlName="city" id="city" type="text" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-            <button [disabled]="checkOutForm.invalid" class="btn-main" type="submit">online payment</button>
-            <!-- <button class="btn-main" type="submit">
-                Cash on Delivery Payment
-              </button> -->
-              
+            <label for="phone" class="leading-7 text-sm text-gray-600">Phone: </label>
+            <input formControlName="phone" id="phone" type="tel" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+
+        <div class="relative mb-4">
+            <label for="city" class="leading-7 text-sm text-gray-600">City: </label>
+            <input formControlName="city" id="city" type="text" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+
+        <button [disabled]="checkOutForm.invalid" class="btn-main" type="submit">Online Payment</button>
+        <button [disabled]="checkOutForm.invalid" class="btn-main" type="button" (click)="submitPaymentFormCash()">Cash on Delivery Payment</button>
     </form>
- </section>
+</section>

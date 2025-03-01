@@ -1,1 +1,63 @@
-<p>all-orders works!</p>
+<div class="container mx-auto px-4 py-8">
+    <!-- Orders List -->
+    @if (orders) {
+      <div class="space-y-6">
+        @for (order of orders; track order._id) {
+          <div class="bg-white shadow-lg rounded-lg p-6">
+            <!-- Order Header -->
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Order ID: {{ order._id }}</h3>
+  
+            <!-- Order Details -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <p class="text-gray-600"><strong>Order Date:</strong> {{ order.createdAt | date: 'medium' }}</p>
+              <p class="text-gray-600"><strong>Total Price:</strong> ${{ order.totalOrderPrice }}</p>
+              <p class="text-gray-600"><strong>Payment Method:</strong> {{ order.paymentMethodType }}</p>
+              <p class="text-gray-600">
+                <strong>Status:</strong>
+                @if (order.isPaid) {
+                  <span class="ml-2 px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full">Paid</span>
+                } @else {
+                  <span class="ml-2 px-2 py-1 bg-red-100 text-red-800 text-sm rounded-full">Unpaid</span>
+                }
+                @if (order.isDelivered) {
+                  <span class="ml-2 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Delivered</span>
+                } @else {
+                  <span class="ml-2 px-2 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Pending Delivery</span>
+                }
+              </p>
+            </div>
+  
+            <!-- Shipping Address -->
+            <div class="mb-6">
+              <h4 class="text-xl font-semibold text-gray-800 mb-2">Shipping Address</h4>
+              <div class="text-gray-600 space-y-1">
+                <p>{{ order.shippingAddress?.details }}</p>
+                <p>{{ order.shippingAddress?.city }}</p>
+                <p>{{ order.shippingAddress?.postalCode }}</p>
+                <p>{{ order.shippingAddress?.phone }}</p>
+              </div>
+            </div>
+  
+            <!-- Cart Items -->
+            <div>
+              <h4 class="text-xl font-semibold text-gray-800 mb-4">Items</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                @for (item of order.cartItems; track item._id) {
+                  <div class="bg-gray-50 p-4 rounded-lg flex items-center space-x-4">
+                    <img [src]="item.product.imageCover" alt="{{ item.product.title }}" class="w-16 h-16 object-cover rounded-lg">
+                    <div class="flex-1">
+                      <p class="font-semibold text-gray-800">{{ item.product.title }}</p>
+                      <p class="text-sm text-gray-600">Quantity: {{ item.count }}</p>
+                      <p class="text-sm text-gray-600">Price: ${{ item.price }}</p>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <p class="text-center text-gray-600">No orders found.</p>
+        }
+      </div>
+    }
+  </div>

@@ -28,9 +28,11 @@
           <li>
             <a routerLink="/brands" routerLinkActive="active-link" class="block py-2 px-3  rounded-sm" aria-current="page">{{'navbar.brands' | translate}}</a>
           </li>
+          
           <li>
             <a routerLink="/wishlist" routerLinkActive="active-link" class="block py-2 px-3  rounded-sm" aria-current="page">{{'navbar.wishlist' | translate}}</a>
           </li>
+
         </ul>
         }
    
@@ -45,7 +47,7 @@
             <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <a  class=" cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">English</a>
+                    <a class=" cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">English</a>
                   </li>
                   <li>
                     <a  class="cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">العربية</a>
@@ -55,35 +57,31 @@
             </div>
         </li>
           <li>
-                <a href="#" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
+                <a routerLink="/home" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
               </li>
             <li>
-                <a href="#" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
+                <a routerLink="/home" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
                     <i class="fa-brands fa-facebook"></i>
                 </a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
+                <a routerLink="/home" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
                     <i class="fa-brands fa-tiktok"></i>
                 </a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
+                <a routerLink="/home" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
                     <i class="fa-brands fa-twitter"></i>
                 </a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
+                <a routerLink="/home" class="block py-2 px-3  rounded-sm md:p-0" aria-current="page">
                     <i class="fa-brands fa-youtube"></i>
                 </a>
               </li>
+              
 @if(!isLogin()){
     <li>
         <a routerLink="login" routerLinkActive="active-link" class="block py-2 px-3  rounded-sm" aria-current="page">{{'navbar.login' | translate}}</a>

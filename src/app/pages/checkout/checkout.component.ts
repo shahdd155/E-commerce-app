@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { format } from 'path';
 import { OrdersService } from '../../core/services/orders/orders.service';
 
@@ -14,6 +14,7 @@ export class CheckoutComponent implements OnInit {
 private readonly formBuilder= inject(FormBuilder);
 private readonly activatedRoute= inject(ActivatedRoute); //lw 3yza a5od 7aga mn el url el fo2 ast3mlo bh3mlha inject msln el cart id
 private readonly ordersService= inject(OrdersService); 
+private readonly router= inject(Router); 
   checkOutForm!:FormGroup;
 cartId:string=''
   intiateForm():void{
@@ -54,6 +55,20 @@ this.ordersService.checkoutPayment(this.cartId,this.checkOutForm.value).subscrib
 
 })
   }
+
+  submitPaymentFormCash():void{
+    this.ordersService.checkoutPaymentCash(this.cartId,this.checkOutForm.value).subscribe({
+      next:(res)=>{
+        console.log(res)
+        this.router.navigate(['/allorders']);
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    
+    })
+      }
+    
 
 
   
